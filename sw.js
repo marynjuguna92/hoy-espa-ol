@@ -1,4 +1,4 @@
-const CACHE_NAME = "hoy-espanol-v1";
+const CACHE_NAME = "hoy-espanol-v2";
 const ASSETS = [
   ".",
   "./",
