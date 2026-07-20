@@ -313,7 +313,7 @@ function setNewQuestion() {
     button.className = "choice-button";
     button.type = "button";
     button.dataset.choice = choice;
-    button.innerHTML = `<strong>${choice}</strong><br><span>${choice === state.current.english ? "Correct match" : "Try another"}</span>`;
+    button.innerHTML = `<strong>${choice}</strong><br><span>Tap to answer</span>`;
     button.addEventListener("click", () => handleChoice(choice, button));
     elements.choicesGrid.appendChild(button);
   });
