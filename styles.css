@@ -1,0 +1,662 @@
+:root {
+  color-scheme: dark;
+  --bg: #08111f;
+  --bg-soft: rgba(11, 18, 35, 0.82);
+  --panel: rgba(13, 21, 43, 0.88);
+  --panel-strong: rgba(19, 30, 60, 0.96);
+  --text: #f8fbff;
+  --muted: rgba(232, 240, 255, 0.72);
+  --line: rgba(255, 255, 255, 0.08);
+  --blue: #37d6ff;
+  --teal: #2ef3b3;
+  --sun: #ffcf4d;
+  --pink: #ff6bb5;
+  --orange: #ff8f4d;
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  --radius-xl: 30px;
+  --radius-lg: 22px;
+  --radius-md: 18px;
+  --radius-sm: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Avenir Next", "Segoe UI", "Trebuchet MS", system-ui, sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(255, 111, 181, 0.22), transparent 32%),
+    radial-gradient(circle at right top, rgba(55, 214, 255, 0.18), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(46, 243, 179, 0.12), transparent 26%),
+    linear-gradient(180deg, #07101d 0%, #091324 55%, #050a13 100%);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 95%);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.background-orbs span {
+  position: fixed;
+  border-radius: 999px;
+  filter: blur(12px);
+  opacity: 0.6;
+  mix-blend-mode: screen;
+  animation: drift 18s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.background-orbs span:nth-child(1) {
+  width: 180px;
+  height: 180px;
+  left: -30px;
+  top: 12vh;
+  background: rgba(255, 107, 181, 0.28);
+}
+
+.background-orbs span:nth-child(2) {
+  width: 220px;
+  height: 220px;
+  right: -40px;
+  top: 18vh;
+  background: rgba(55, 214, 255, 0.26);
+  animation-delay: -4s;
+}
+
+.background-orbs span:nth-child(3) {
+  width: 160px;
+  height: 160px;
+  right: 14vw;
+  bottom: 10vh;
+  background: rgba(46, 243, 179, 0.2);
+  animation-delay: -8s;
+}
+
+.background-orbs span:nth-child(4) {
+  width: 120px;
+  height: 120px;
+  left: 18vw;
+  bottom: 18vh;
+  background: rgba(255, 207, 77, 0.18);
+  animation-delay: -12s;
+}
+
+.app-shell {
+  width: min(1180px, calc(100vw - 32px));
+  margin: 24px auto 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-card,
+.panel {
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(18, 28, 52, 0.92), rgba(9, 15, 31, 0.92));
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.hero-card {
+  border-radius: calc(var(--radius-xl) + 6px);
+  padding: 26px;
+}
+
+.brand-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 18px;
+  align-items: center;
+}
+
+.brand-mark {
+  width: 78px;
+  height: 78px;
+  display: grid;
+  place-items: center;
+  border-radius: 24px;
+  font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+  font-size: 1.7rem;
+  color: #091324;
+  background: linear-gradient(135deg, var(--sun), var(--pink));
+  box-shadow: 0 18px 35px rgba(255, 111, 181, 0.3);
+}
+
+.brand-copy h1,
+.panel h2,
+.challenge-card h3,
+.mini-panel h3 {
+  margin: 0;
+  font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+  letter-spacing: 0.2px;
+}
+
+.brand-copy h1 {
+  font-size: clamp(2.2rem, 4vw, 4.2rem);
+  line-height: 0.98;
+}
+
+.eyebrow,
+.section-kicker,
+.stat-label,
+.challenge-tag,
+.feedback-label {
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.free-badge,
+.mode-chip,
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.free-badge {
+  padding: 12px 16px;
+  color: #08111f;
+  background: linear-gradient(135deg, var(--teal), var(--sun));
+}
+
+.hero-grid,
+.content-grid {
+  display: grid;
+  gap: 22px;
+}
+
+.hero-grid {
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.9fr);
+  margin-top: 24px;
+}
+
+.hero-copy {
+  padding: 10px 4px 6px 2px;
+}
+
+.intro,
+.panel p,
+.mini-panel p,
+.coach-summary,
+.chat-message,
+.progress-meta,
+.feedback-card,
+.challenge-card,
+.game-footer,
+.mode-chip,
+.pill,
+.stat-card small {
+  color: var(--muted);
+}
+
+.intro {
+  font-size: 1.12rem;
+  max-width: 54ch;
+  line-height: 1.6;
+  margin: 14px 0 0;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.button {
+  border: 0;
+  border-radius: 16px;
+  padding: 14px 18px;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, opacity 160ms ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  transform: translateY(-2px);
+}
+
+.button-primary {
+  color: #06111d;
+  background: linear-gradient(135deg, var(--teal), var(--sun));
+  box-shadow: 0 18px 30px rgba(46, 243, 179, 0.2);
+}
+
+.button-secondary {
+  color: var(--text);
+  background: linear-gradient(135deg, rgba(55, 214, 255, 0.2), rgba(255, 107, 181, 0.18));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.button-ghost {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.pill {
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.stat-card,
+.challenge-card,
+.feedback-card,
+.mini-panel,
+.coach-summary,
+.chat-card {
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.stat-card {
+  padding: 18px;
+  min-height: 128px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.stat-card strong {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-family: "Baloo 2", cursive;
+  line-height: 1;
+}
+
+.content-grid {
+  grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+  margin-top: 22px;
+}
+
+.roadmap-panel {
+  margin-top: 22px;
+  border-radius: var(--radius-xl);
+}
+
+.roadmap-intro {
+  margin: 4px 0 18px;
+  max-width: 72ch;
+  line-height: 1.6;
+}
+
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.roadmap-unit {
+  padding: 18px;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.roadmap-unit.active {
+  border-color: rgba(46, 243, 179, 0.4);
+  background: linear-gradient(135deg, rgba(46, 243, 179, 0.12), rgba(55, 214, 255, 0.08));
+}
+
+.roadmap-unit h3 {
+  margin: 0 0 8px;
+  font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+  font-size: 1.2rem;
+}
+
+.roadmap-unit ul {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+
+.roadmap-unit li {
+  margin-bottom: 8px;
+}
+
+.lesson-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 8px 0 0;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.lesson-chip.done {
+  background: rgba(46, 243, 179, 0.12);
+  border-color: rgba(46, 243, 179, 0.35);
+}
+
+.lesson-chip.current {
+  background: rgba(255, 207, 77, 0.12);
+  border-color: rgba(255, 207, 77, 0.35);
+}
+
+.panel {
+  border-radius: var(--radius-xl);
+  padding: 22px;
+}
+
+.panel-header,
+.progress-meta,
+.game-footer,
+.coach-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.panel-header h2 {
+  font-size: clamp(1.7rem, 2.6vw, 2.6rem);
+}
+
+.mode-chip {
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  min-height: 42px;
+  text-align: center;
+}
+
+.mode-chip-soft {
+  background: rgba(55, 214, 255, 0.1);
+}
+
+.progress-wrap {
+  margin-top: 20px;
+}
+
+.progress-meta {
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.progress-fill {
+  width: 10%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--pink), var(--sun), var(--teal));
+  transition: width 220ms ease;
+}
+
+.challenge-card {
+  padding: 22px;
+  margin-top: 18px;
+  background: linear-gradient(135deg, rgba(55, 214, 255, 0.11), rgba(255, 111, 181, 0.11));
+}
+
+.challenge-card h3 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--text);
+}
+
+.choices-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.choice-button {
+  min-height: 78px;
+  padding: 16px;
+  text-align: left;
+  color: var(--text);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+}
+
+.choice-button.correct {
+  background: linear-gradient(135deg, rgba(46, 243, 179, 0.25), rgba(55, 214, 255, 0.12));
+  border-color: rgba(46, 243, 179, 0.45);
+}
+
+.choice-button.wrong {
+  background: linear-gradient(135deg, rgba(255, 107, 181, 0.25), rgba(255, 143, 77, 0.12));
+  border-color: rgba(255, 107, 181, 0.45);
+}
+
+.feedback-card,
+.coach-summary,
+.chat-card,
+.mini-panel {
+  padding: 18px;
+}
+
+.feedback-card {
+  margin-top: 16px;
+}
+
+.game-footer {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.coach-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.coach-summary {
+  min-height: 112px;
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+
+.chat-card {
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: auto;
+}
+
+.chat-message {
+  padding: 12px 14px;
+  border-radius: 16px;
+  line-height: 1.55;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chat-message.user {
+  align-self: flex-end;
+  background: rgba(55, 214, 255, 0.14);
+}
+
+.chat-message.coach {
+  background: rgba(46, 243, 179, 0.12);
+}
+
+.coach-form {
+  align-items: stretch;
+}
+
+.coach-form input {
+  flex: 1;
+  min-width: 0;
+  border-radius: 16px;
+  padding: 14px 16px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  outline: none;
+}
+
+.coach-form input::placeholder {
+  color: rgba(232, 240, 255, 0.48);
+}
+
+.mini-panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.mini-panel h3 {
+  font-size: 1.3rem;
+  color: var(--text);
+}
+
+.footer-panel {
+  margin-top: 22px;
+  border-radius: var(--radius-xl);
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+}
+
+.footer-panel h2 {
+  font-size: clamp(1.7rem, 2.8vw, 2.6rem);
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -18px, 0) scale(1.08);
+  }
+}
+
+@media (max-width: 980px) {
+  .brand-row,
+  .hero-grid,
+  .content-grid,
+  .footer-panel,
+  .roadmap-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-row {
+    justify-items: start;
+  }
+
+  .stats-grid,
+  .choices-grid,
+  .mini-panels {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-panel {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 720px) {
+  .app-shell {
+    width: min(100vw - 18px, 1180px);
+    margin: 10px auto 22px;
+  }
+
+  .hero-card,
+  .panel {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .brand-mark {
+    width: 64px;
+    height: 64px;
+    font-size: 1.4rem;
+  }
+
+  .panel-header,
+  .progress-meta,
+  .coach-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .stats-grid,
+  .choices-grid,
+  .mini-panels,
+  .roadmap-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .button,
+  .coach-form input {
+    width: 100%;
+  }
+
+  .game-footer,
+  .hero-actions {
+    flex-direction: column;
+  }
+}

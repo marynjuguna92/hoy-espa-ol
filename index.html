@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f172a" />
+    <title>Hoy Español - Free DELE A1 Spanish Game</title>
+    <meta name="description" content="A free offline-friendly Spanish learning game structured around DELE A1 lessons." />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="background-orbs" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <main class="app-shell">
+      <header class="hero-card">
+        <div class="brand-row">
+          <div class="brand-mark">HOY</div>
+          <div class="brand-copy">
+            <p class="eyebrow">100% free, offline-friendly, no paywall</p>
+            <h1>DELE A1 Spanish that feels like a game.</h1>
+          </div>
+          <div class="free-badge">Always free offline</div>
+        </div>
+
+        <div class="hero-grid">
+          <section class="hero-copy">
+            <p class="intro">
+              Follow a clear DELE A1 study path with lessons, review gates, exam-style practice, pronunciation, and adaptive coaching that works without internet.
+            </p>
+            <div class="hero-actions">
+              <button class="button button-primary" id="start-path">Start DELE A1 Path</button>
+              <button class="button button-secondary" id="review-lesson">Review Lesson</button>
+              <button class="button button-ghost" id="speak-word">Hear Spanish</button>
+            </div>
+            <div class="pill-row">
+              <span class="pill">Local progress</span>
+              <span class="pill">Voice practice</span>
+              <span class="pill">AI coach</span>
+              <span class="pill">Structured A1 path</span>
+            </div>
+          </section>
+
+          <section class="stats-grid" aria-label="Progress summary">
+            <article class="stat-card">
+              <span class="stat-label">Path streak</span>
+              <strong id="streak-count">0</strong>
+              <small>days in a row</small>
+            </article>
+            <article class="stat-card">
+              <span class="stat-label">XP</span>
+              <strong id="xp-count">0</strong>
+              <small>learning points</small>
+            </article>
+            <article class="stat-card">
+              <span class="stat-label">Coins</span>
+              <strong id="coin-count">0</strong>
+              <small>unlockables earned</small>
+            </article>
+            <article class="stat-card">
+              <span class="stat-label">Accuracy</span>
+              <strong id="accuracy-count">0%</strong>
+              <small>lesson mastery</small>
+            </article>
+          </section>
+        </div>
+      </header>
+
+      <section class="content-grid">
+        <section class="panel game-panel">
+          <div class="panel-header">
+            <div>
+              <p class="section-kicker">Course zone</p>
+              <h2 id="game-title">DELE A1 Path</h2>
+            </div>
+            <div class="mode-chip" id="mode-chip">Lesson 1 of 6</div>
+          </div>
+
+          <div class="progress-wrap">
+            <div class="progress-meta">
+              <span id="question-count">Lesson 1: Greetings and introductions</span>
+              <span id="timer-label">Offline mode ready</span>
+            </div>
+            <div class="progress-bar" aria-hidden="true">
+              <div class="progress-fill" id="progress-fill"></div>
+            </div>
+          </div>
+
+          <article class="challenge-card">
+            <p class="challenge-tag">Lesson mission</p>
+            <h3 id="prompt-word">hola</h3>
+            <p id="prompt-clue">Choose the best English match.</p>
+          </article>
+
+          <div class="choices-grid" id="choices-grid"></div>
+
+          <div class="feedback-card" id="feedback-card">
+            <p class="feedback-label">Coach says</p>
+            <p id="feedback-text">Pick an answer to start earning XP.</p>
+          </div>
+
+          <div class="game-footer">
+            <button class="button button-primary" id="next-question">Next lesson step</button>
+            <button class="button button-secondary" id="repeat-word">Replay word</button>
+          </div>
+        </section>
+
+        <section class="panel coach-panel">
+          <div class="panel-header">
+            <div>
+              <p class="section-kicker">AI coach</p>
+              <h2>Luna guides the path</h2>
+            </div>
+            <div class="mode-chip mode-chip-soft">Runs locally, no internet needed</div>
+          </div>
+
+          <div class="coach-summary" id="coach-summary"></div>
+
+          <div class="chat-card" id="chat-card" aria-live="polite"></div>
+
+          <form class="coach-form" id="coach-form">
+            <label class="sr-only" for="coach-input">Ask Luna for a hint</label>
+            <input id="coach-input" type="text" placeholder="Ask for a hint, mnemonic, or pronunciation tip..." />
+            <button class="button button-secondary" type="submit">Ask Luna</button>
+          </form>
+
+          <div class="mini-panels">
+            <article class="mini-panel">
+              <p class="section-kicker">Current unit</p>
+              <h3 id="quest-title">Unit 1: Greetings</h3>
+              <p id="quest-body">Start with the exact foundation a DELE A1 learner needs.</p>
+            </article>
+            <article class="mini-panel">
+              <p class="section-kicker">DELE focus</p>
+              <h3 id="skill-title">Listening and speaking</h3>
+              <p id="skill-body">Every lesson includes recognition, recall, and exam-style review.
+              </p>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <section class="panel roadmap-panel">
+        <div class="panel-header">
+          <div>
+            <p class="section-kicker">Path map</p>
+            <h2>DELE A1 course roadmap</h2>
+          </div>
+          <div class="mode-chip mode-chip-soft">Tap a lesson to jump back and review</div>
+        </div>
+        <p class="roadmap-intro">
+          The course is arranged in a clear order: greetings, people, daily life, shopping, then exam readiness. Each unit has mastery checkpoints before you move on.
+        </p>
+        <div class="roadmap-grid" id="roadmap-grid" aria-label="Course roadmap"></div>
+      </section>
+
+      <section class="panel footer-panel">
+        <div>
+          <p class="section-kicker">Why it works offline</p>
+          <h2>No ads, no subscriptions, no account needed.</h2>
+        </div>
+        <p>
+          Everything runs on the device. Progress is saved locally, the coach is built into the app, and the course path is structured for DELE A1-style study on phones, tablets, and desktops.
+        </p>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

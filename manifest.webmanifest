@@ -1,0 +1,18 @@
+{
+  "name": "Hoy Español",
+  "short_name": "Hoy Español",
+  "description": "A free offline-friendly Spanish learning game structured around DELE A1 lessons.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#08111f",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
