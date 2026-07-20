@@ -685,22 +685,6 @@ function reviewCurrentLesson() {
   setNewQuestion();
 }
 
-function registerServiceWorker() {
-  if (!("serviceWorker" in navigator)) {
-    return;
-  }
-  const isLocalHttp = window.location.protocol === "http:" || window.location.protocol === "https:";
-  if (!isLocalHttp) {
-    return;
-  }
-
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("sw.js").catch(() => {
-      // Offline mode still works without the service worker when opened locally.
-    });
-  });
-}
-
 function init() {
   loadState();
   wireEvents();
@@ -708,7 +692,6 @@ function init() {
   updateCoachPanel();
   renderRoadmap();
   setNewQuestion();
-  registerServiceWorker();
   saveState();
 }
 
